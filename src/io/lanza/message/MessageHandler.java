@@ -1,4 +1,6 @@
-package io.lanza;
+package io.lanza.message;
+
+import io.lanza.message.Message;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ public class MessageHandler {
         listeners.add(listener);
     }
 
-    public void removeListener(MessageListner listener) {
+    public void removeListener(MessageListener listener) {
         listeners.remove(listener);
     }
 

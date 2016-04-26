@@ -1,4 +1,4 @@
-package io.lanza;
+package io.lanza.frontend;
 
 public class EofToken extends Token {
     public EofToken(Source source) throws Exception {

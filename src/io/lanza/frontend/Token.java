@@ -1,4 +1,4 @@
-package io.lanza;
+package io.lanza.frontend;
 
 public class Token {
     protected TokenType type;
@@ -14,6 +14,10 @@ public class Token {
         this.position = source.getPosition();
 
         extract();
+    }
+
+    public int getLineNum() {
+        return lineNum;
     }
 
     protected void extract() throws Exception {

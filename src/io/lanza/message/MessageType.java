@@ -1,4 +1,4 @@
-package io.lanza;
+package io.lanza.message;
 
 public enum MessageType {
     SOURCE_LINE, SYNTAX_ERROR,

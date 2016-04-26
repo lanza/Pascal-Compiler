@@ -1,4 +1,4 @@
-package io.lanza;
+package io.lanza.frontend;
 
 public interface TokenType {
 

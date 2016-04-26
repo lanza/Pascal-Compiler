@@ -1,13 +1,10 @@
-package io.lanza;
+package io.lanza.frontend;
 
-
-class SymTab {
-
-}
-
-class ICode {
-
-}
+import io.lanza.message.Message;
+import io.lanza.message.MessageType;
+import io.lanza.message.MessageListener;
+import io.lanza.message.MessageHandler;
+import io.lanza.message.MessageProducer;
 
 public abstract class Parser implements MessageProducer {
 

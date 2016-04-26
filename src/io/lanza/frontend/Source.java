@@ -1,4 +1,10 @@
-package io.lanza;
+package io.lanza.frontend;
+
+import io.lanza.message.Message;
+import io.lanza.message.MessageType;
+import io.lanza.message.MessageListener;
+import io.lanza.message.MessageHandler;
+import io.lanza.message.MessageProducer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,7 +82,7 @@ public class Source implements MessageProducer {
 
         if (line != null) {
             ++lineNum;
-            sendMessage(new Message(SOURCE_LINE, new Object[] { lineNum, line}));
+            sendMessage(new Message(MessageType.SOURCE_LINE, new Object[] { lineNum, line}));
         }
     }
 
