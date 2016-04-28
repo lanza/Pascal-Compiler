@@ -2,9 +2,10 @@ package io.lanza.frontend.pascal;
 
 import io.lanza.frontend.*;
 import io.lanza.message.Message;
-import io.lanza.message.MessageType;
 
-import static io.lanza.message.MessageType.PARSER_SUMMARY;
+import static io.lanza.frontend.pascal.PascalTokenType.*;
+import static io.lanza.frontend.pascal.PascalErrorCode.*;
+import static io.lanza.message.MessageType.*;
 
 public class PascalParserTD extends Parser {
     public PascalParserTD(Scanner scanner) {
@@ -21,13 +22,13 @@ public class PascalParserTD extends Parser {
             while (!((token = nextToken()) instanceof EofToken)) {
                 TokenType tokenType = token.type;
                 if (tokenType != ERROR) {
-                    sendMessage(new Message(MessageType.TOKEN, new Object[]{token.lineNum, token.position, tokenType, token.text, token.value}));
+                    sendMessage(new Message(TOKEN, new Object[]{token.lineNum, token.position, tokenType, token.text, token.value}));
                 } else {
                     errorHandler.flag(token, (PascalErrorCode) token.value, this);
                 }
             }
             float elapsedTime = (System.currentTimeMillis() - startTime) / 1000f;
-            sendMessage(new Message(MessageType.PARSER_SUMMARY, new Number[]{token.lineNum, getErrorCount(), elapsedTime}));
+            sendMessage(new Message(PARSER_SUMMARY, new Number[]{token.lineNum, getErrorCount(), elapsedTime}));
         } catch (java.io.IOException ex) {
             errorHandler.abortTranslation(IO_ERROR, this);
         }
@@ -35,6 +36,6 @@ public class PascalParserTD extends Parser {
 
     public int getErrorCount() {
 
-        return errorHandler.getErrorCount();
+        return errorHandler.errorCount;
     }
 }

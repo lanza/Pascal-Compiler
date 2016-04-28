@@ -4,6 +4,9 @@ import io.lanza.frontend.*;
 import io.lanza.frontend.pascal.tokens.*;
 
 import static io.lanza.frontend.Source.EOF;
+import static io.lanza.frontend.pascal.PascalTokenType.*;
+import static io.lanza.frontend.pascal.PascalErrorCode.*;
+
 
 public class PascalScanner extends Scanner {
     public PascalScanner(Source source) {
@@ -18,7 +21,7 @@ public class PascalScanner extends Scanner {
         char currentChar = currentChar();
 
         if (currentChar == EOF) {
-            token = new EofToken(source, END_OF_FILE);
+            token = new EofToken(source);
         } else if (Character.isLetter(currentChar)) {
             token = new PascalWordToken(source);
         } else if (Character.isDigit(currentChar)) {

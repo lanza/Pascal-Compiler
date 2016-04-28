@@ -8,6 +8,9 @@ import io.lanza.backend.*;
 import io.lanza.intermediate.*;
 import io.lanza.message.*;
 
+import static io.lanza.frontend.pascal.PascalTokenType.STRING;
+import static io.lanza.message.MessageType.*;
+
 public class Pascal {
     private Parser parser;
     private Source source;

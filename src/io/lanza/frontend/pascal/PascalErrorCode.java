@@ -62,7 +62,7 @@ public enum PascalErrorCode {
     IO_ERROR(-101, "Object I/O error"),
     TOO_MANY_ERRORS(-102, "Too many syntax errors");
 
-    private int status;
+    public int status;
     private String message;
 
     PascalErrorCode(String message) {
