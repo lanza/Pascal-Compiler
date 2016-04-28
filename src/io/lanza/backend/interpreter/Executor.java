@@ -1,7 +1,8 @@
-package io.lanza.backend;
+package io.lanza.backend.interpreter;
 
-import io.lanza.frontend.SymTab;
-import io.lanza.frontend.ICode;
+import io.lanza.backend.Backend;
+import io.lanza.intermediate.SymTab;
+import io.lanza.intermediate.ICode;
 
 import io.lanza.message.Message;
 import io.lanza.message.MessageType;

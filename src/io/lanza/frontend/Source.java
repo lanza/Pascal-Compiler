@@ -20,15 +20,8 @@ public class Source implements MessageProducer {
 
     private BufferedReader reader;
     private String line;
-    private int lineNum;
-    private int currentPos;
-
-    public int getLineNum() {
-        return lineNum;
-    }
-    public int getPosition() {
-        return currentPos;
-    }
+    public int lineNum;
+    public int currentPos;
 
     public Source(BufferedReader reader) throws Exception {
         this.lineNum = 0;
@@ -66,14 +59,8 @@ public class Source implements MessageProducer {
         return nextPos < line.length() ? line.charAt(nextPos) : EOL;
     }
 
-    public void addMessageListener(MessageListener listener) {
-        messageHandler.addListener(listener);
-    }
-    public void removeMessageListener(MessageListener listener) {
-        messageHandler.removeListener(listener);
-    }
-    public void sendMessage(Message message) {
-        messageHandler.sendMessage(message);
+    public MessageHandler getMessageHandler() {
+        return messageHandler;
     }
 
     private void readLine() throws IOException {

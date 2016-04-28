@@ -2,8 +2,8 @@ package io.lanza.message;
 
 public class Message {
 
-    private MessageType type;
-    private Object body;
+    public MessageType type;
+    public Object body;
 
     public Message(MessageType type, Object body) {
         this.type = type;

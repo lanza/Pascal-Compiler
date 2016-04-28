@@ -1,9 +1,7 @@
 package io.lanza.backend;
 
-import io.lanza.frontend.ICode;
-import io.lanza.frontend.Scanner;
-import io.lanza.frontend.SymTab;
-import io.lanza.frontend.Token;
+import io.lanza.intermediate.ICode;
+import io.lanza.intermediate.SymTab;
 import io.lanza.message.Message;
 import io.lanza.message.MessageHandler;
 import io.lanza.message.MessageListener;
@@ -25,14 +23,8 @@ public abstract class Backend implements MessageProducer {
 
     public abstract void process(ICode iCode, SymTab symTab) throws Exception;
 
-    public void addMessageListener(MessageListener listener) {
-        messageHandler.addListener(listener);
-    }
-    public void removeMessageListener(MessageListener listener) {
-        messageHandler.removeListener(listener);
-    }
-    public void sendMessage(Message message) {
-        messageHandler.sendMessage(message);
+    public MessageHandler getMessageHandler() {
+        return messageHandler;
     }
 }
 

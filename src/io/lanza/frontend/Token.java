@@ -1,17 +1,17 @@
 package io.lanza.frontend;
 
 public class Token {
-    protected TokenType type;
-    protected String text;
-    protected Object value;
-    protected Source source;
-    protected int lineNum;
-    protected int position;
+    public TokenType type;
+    public String text;
+    public Object value;
+    public Source source;
+    public int lineNum;
+    public int position;
 
     public Token(Source source) throws Exception {
         this.source = source;
-        this.lineNum = source.getLineNum();
-        this.position = source.getPosition();
+        this.lineNum = source.lineNum;
+        this.position = source.currentPos;
 
         extract();
     }

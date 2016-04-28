@@ -1,6 +1,9 @@
 package io.lanza.backend;
 
 
+import io.lanza.backend.compiler.CodeGenerator;
+import io.lanza.backend.interpreter.Executor;
+
 public class BackendFactory {
     public static Backend createBackend(String operation) throws Exception {
         if (operation.equalsIgnoreCase("compile")) {
@@ -8,7 +11,7 @@ public class BackendFactory {
         } else if (operation.equalsIgnoreCase("execute")) {
             return new Executor();
         } else {
-            throw new Exception("Backend factory: Invalid operation '" + operation "'");
+            throw new Exception("Backend factory: Invalid operation '" + operation + "'");
         }
     }
 }
