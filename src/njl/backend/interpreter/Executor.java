@@ -1,19 +1,49 @@
 package njl.backend.interpreter;
 
-import njl.backend.Backend;
-import njl.intermediate.SymTabStack;
-import njl.intermediate.ICode;
+import njl.intermediate.*;
+import njl.intermediate.icodeimpl.*;
+import njl.backend.*;
+import njl.backend.interpreter.executors.*;
+import njl.message.*;
 
-import njl.message.Message;
-import njl.message.MessageType;
+import javax.sql.StatementEvent;
+
+import static njl.intermediate.icodeimpl.ICodeNodeTypeImpl.*;
+import static njl.message.MessageType.INTERPRETER_SUMMARY;
 
 public class Executor extends Backend {
-    public void process(ICode icode, SymTabStack symTabStack) throws  Exception {
-        long startTime = System.currentTimeMillis();
-        float elapsedTime = (System.currentTimeMillis() - startTime)/1000f;
-        int executionCount = 0;
-        int runtimeErrors = 0;
 
-        sendMessage(new Message(MessageType.INTERPRETER_SUMMARY, new Number[] {executionCount, runtimeErrors, elapsedTime}));
+    protected static int executionCount;
+    protected static RuntimeErrorHandler errorHandler;
+
+    static {
+        executionCount = 0;
+        errorHandler = new RuntimeErrorHandler();
+    }
+
+    public Executor() {}
+
+    public Executor(Executor parent) {
+        super();
+    }
+
+    public RuntimeErrorHandler getErrorHandler() {
+        return errorHandler;
+    }
+
+    public void process(ICode iCode, SymTabStack symTabStack) throws  Exception {
+        Executor.symTabStack = symTabStack;
+        this.iCode = iCode;
+
+        long startTime = System.currentTimeMillis();
+
+        ICodeNode rootNode = iCode.getRoot();
+        StatementExecutor statementExecutor = new StatementExecutor(this);
+        statementExecutor.execute(rootNode);
+
+        float elapsedTime = (System.currentTimeMillis() - startTime)/1000f;
+        int runtimeErrors = errorHandler.getErrorCount();
+
+        sendMessage(new Message(INTERPRETER_SUMMARY, new Number[] {executionCount, runtimeErrors, elapsedTime}));
     }
 }

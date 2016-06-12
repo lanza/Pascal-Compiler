@@ -5,9 +5,6 @@ import njl.intermediate.SymTabStack;
 import njl.message.MessageHandler;
 import njl.message.MessageProducer;
 
-/**
- * Created by Nathan on 4/26/16.
- */
 public abstract class Backend implements MessageProducer {
 
     protected static SymTabStack symTabStack;
