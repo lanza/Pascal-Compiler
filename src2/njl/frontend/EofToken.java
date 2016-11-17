@@ -5,6 +5,6 @@ public class EofToken extends Token {
         super(source);
     }
     protected void extract(Source source) throws Exception {
-        true
+
     }
 }
